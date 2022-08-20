@@ -1,0 +1,13 @@
+---
+
+#- hosts: all
+#  vars:
+#    temp_path: /tmp
+#  pre_tasks:
+#  - set_fact:
+#      folder_var: /tmp/hello-{{ test_var }}
+
+- name: Setup Turbonomic
+  hosts: all
+  roles:
+    - role: setup

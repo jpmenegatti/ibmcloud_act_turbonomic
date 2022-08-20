@@ -1,0 +1,41 @@
+- name: Setup network
+  command: '/opt/local/bin/ipsetup -a 10.240.0.6 -n 255.255.255.0 -g 10.240.0.1 -d "161.26.0.10 161.26.0.11" -D ibm.cloud -v'
+
+- name: Remove wrong MySQL folder
+  ansible.builtin.file:
+    path: /var/lib/mysql
+    state: absent
+    
+- name: stat mysql
+  stat: path=/var/lib/mysql.bkp/mysql
+  register: mysql_stat
+
+- name: Move mysql
+  command: mv /var/lib/mysql.bkp/mysql /var/lib/
+  when: mysql_stat.stat.exists
+  
+- name: Start service MySql
+  ansible.builtin.service:
+    name: mariadb
+    state: started
+
+- name: Create Hello World folder
+  ansible.builtin.file:
+    path: /tmp/helloworld
+    state: directory
+    mode: '0755'
+
+- name: Create symbolic link
+  ansible.builtin.file:
+    src: /tmp/helloworld
+    dest: /tmp/helloworldlink
+    state: link
+    
+- name: Create Hello-World folder
+  ansible.builtin.file:
+    path: "{{ folder_var }}"
+    state: directory
+    mode: '0755'
+    
+- name: Install Turbonomic
+  command: 'echo y|/opt/local/bin/t8cInstall.sh'
