@@ -25,5 +25,11 @@
 #    name: mariadb
 #    state: started
 
+#- name: Install Turbonomic
+#  command: 'echo y|/opt/local/bin/t8cInstall.sh'
+
 - name: Install Turbonomic
-  command: 'echo y|/opt/local/bin/t8cInstall.sh'
+  expect:
+    command: /opt/local/bin/t8cInstall.sh
+    responses:
+      'Have you run the ipsetup script to setup networking yet? [y/n]' : 'y'
