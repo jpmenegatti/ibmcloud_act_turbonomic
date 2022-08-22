@@ -28,8 +28,11 @@
 #- name: Install Turbonomic
 #  command: 'echo y|/opt/local/bin/t8cInstall.sh'
 
+- name: Ensure SELinux is set to enforcing mode
+  ansible.builtin.lineinfile:
+    path: /opt/local/bin/t8cInstall.sh
+    regexp: '^read -e -p '
+    line: ipAnswer="y"
+
 - name: Install Turbonomic
-  ansible.builtin.expect:
-    command: /opt/local/bin/t8cInstall.sh
-    responses:
-      'Have you run the ipsetup script to setup networking yet? [y/n]' : 'y'
+  command: /opt/local/bin/t8cInstall.sh
