@@ -28,7 +28,11 @@
 #- name: Install Turbonomic
 #  command: 'echo y|/opt/local/bin/t8cInstall.sh'
 
-- name: Ensure SELinux is set to enforcing mode
+- name: Install one specific version of Apache
+  ansible.builtin.yum:
+    update_only: yes
+
+- name: Remove IP set question from the script and force to continue
   ansible.builtin.lineinfile:
     path: /opt/local/bin/t8cInstall.sh
     regexp: '^read -e -p '
