@@ -1,6 +1,6 @@
 # Install and configure Turbonomic Virtual Machine at IBM Cloud VPC
 
-Pre req: Setup Turbonomic virtual machine ( [Turbonomic Terraform](https://github.com/jpmenegatti/ibmcloud_terraform_turbonomic) )
+Pre req: Setup Turbonomic virtual machine ( [Turbonomic VM Deploy](https://github.com/jpmenegatti/ibmcloud_terraform_turbonomic) )
 
 IBM Cloud Schematics Actions Ansible script to install and configure Turbonomic
 
