@@ -22,4 +22,4 @@ IBM Cloud Schematics Actions Ansible script to install and configure Turbonomic
 3. Click **Save**.
 
 ## Running the playbook in Schematics by using console
-1. Click "Run action"
+1. Click **Run action**.
